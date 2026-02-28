@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { getPosts, deletePost } from "./actions";
 import { Button } from "@/components/ui/button";
-import { Plus, Edit2, Trash2, Eye } from "lucide-react";
+import { Plus, Edit2, Eye } from "lucide-react";
 import { formatDate } from "@/lib/utils";
+import { DeletePostButton } from "@/components/admin/DeletePostButton";
 
 export default async function PostsPage() {
     const posts = await getPosts();
@@ -75,11 +76,7 @@ export default async function PostsPage() {
                                             "use server";
                                             await deletePost(post.id);
                                         }}>
-                                            <Button variant="ghost" size="icon" type="submit" className="text-gray-400 hover:text-red-600 dark:hover:text-red-400" title="Delete post" onClick={(e) => {
-                                                if (!confirm("Are you sure you want to delete this post?")) e.preventDefault();
-                                            }}>
-                                                <Trash2 className="h-4 w-4" />
-                                            </Button>
+                                            <DeletePostButton />
                                         </form>
                                     </div>
                                 </td>

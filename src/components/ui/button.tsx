@@ -10,7 +10,7 @@ export interface ButtonProps
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className = "", variant = "default", size = "default", asChild = false, ...props }, ref) => {
-        const Comp = asChild ? Slot : "button";
+
         let variantStyles = "bg-primary text-white hover:bg-primary-hover shadow-sm";
 
         if (variant === "outline") {
@@ -24,8 +24,21 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         if (size === "lg") sizeStyles = "h-11 rounded-md px-8";
         if (size === "icon") sizeStyles = "h-10 w-10";
 
+        if (asChild) {
+            return (
+                <Slot
+                    className={`inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${variantStyles} ${sizeStyles} ${className}`}
+                    ref={ref}
+                >
+                    {React.isValidElement(props.children)
+                        ? React.cloneElement(props.children as React.ReactElement<unknown>, {})
+                        : props.children}
+                </Slot>
+            )
+        }
+
         return (
-            <Comp
+            <button
                 ref={ref}
                 className={`inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${variantStyles} ${sizeStyles} ${className}`}
                 {...props}

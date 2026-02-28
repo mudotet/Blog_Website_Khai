@@ -36,6 +36,7 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
             Underline,
         ],
         content,
+        immediatelyRender: false,
         editorProps: {
             attributes: {
                 class: "prose dark:prose-invert max-w-none focus:outline-none min-h-[300px] p-4 text-foreground",

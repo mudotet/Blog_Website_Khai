@@ -30,10 +30,10 @@ export default function AboutPage() {
                         <p>
                             We prioritize typography, whitespace, and a harmonious color palette to create a digital sanctuary.
                             Every article published on Aura is treated with the care of a printed magazine, ensuring that
-                            both the author's voice and the reader's attention are respected.
+                            both the author&apos;s voice and the reader&apos;s attention are respected.
                         </p>
                         <p className="mt-12 text-center text-primary font-serif italic text-xl">
-                            "Design is the silent ambassador of your brand."
+                            &quot;Design is the silent ambassador of your brand.&quot;
                         </p>
                     </div>
                 </div>
